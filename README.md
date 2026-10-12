@@ -1,5 +1,7 @@
 # Name Sorter
 
+![CI](https://github.com/burnfireblaze/name-sorter/actions/workflows/ci.yml/badge.svg)
+
 Submission for the Dye & Durham coding assessment.
 
 Sorts a list of names by last name, then by given names. Prints the result and writes it to a file.
