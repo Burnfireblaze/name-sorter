@@ -26,9 +26,3 @@ X Æ Musk
 R2 D2 Walker
 $Rich Doe
 John123 Smith
-A
-
-Smith
-A B C D E Jones
-Just-A-SingleWord
-Harry S Truman
