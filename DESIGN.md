@@ -24,7 +24,7 @@ If a change forces me to edit two of these at once, one of them is in the wrong 
 
 **Open/Closed.** Adding a new I/O destination (JSON file, HTTP sink, database) means writing a new sink class, not editing an existing one. The composite sink is itself a sink, so the pattern composes.
 
-**Liskov Substitution.** Any `NameSink` works wherever a `NameSink` is expected. The tests use fake sinks (an `io.StringIO`) in place of file sinks without any adjustments.
+**Liskov Substitution.** `StreamNameSink` and `FileNameSink` are interchangeable implementations of the `NameSink` protocol. Their underlying stream or file is an implementation detail; the use case treats them identically. Tests exercise this by passing a `StreamNameSink` backed by an `io.StringIO` in place of a `StreamNameSink` backed by `sys.stdout`.
 
 **Interface Segregation.** `NameSource` has one method (`lines()`). `NameSink` has one method (`write()`). Separate interfaces so a class that only reads doesn't have to implement a `write()` it never calls.
 

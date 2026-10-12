@@ -36,14 +36,28 @@ def test_sort_key_is_case_insensitive():
     assert Name(("leo",), "gardner").sort_key < Name(("Leo",), "Harris").sort_key
 
 
-def test_sort_key_treats_accented_letters_like_their_base():
-    assert (
-        Name(("Jose",), "Smith").sort_key[0][0]
-        == Name(("Jose",), "Smith").sort_key[0][0]
-    )
-    assert Name(("edouard",), "Smith").sort_key < Name(("fred",), "Smith").sort_key
-    assert Name(("Édouard",), "Smith").sort_key < Name(("Fred",), "Smith").sort_key
+def test_sort_key_normalizes_accents_in_last_name():
+    """Accented last names should sort with their unaccented equivalents."""
+    plain = Name(("Pierre",), "Edouard")
+    accented = Name(("Pierre",), "Édouard")
+    assert plain.sort_key[0][0] == accented.sort_key[0][0]
 
+
+def test_sort_key_normalizes_accents_in_given_name():
+    """Accented given names should sort with their unaccented equivalents."""
+    plain = Name(("Jose",), "Smith")
+    accented = Name(("José",), "Smith")
+    assert plain.sort_key[1][0] == accented.sort_key[1][0]
+
+
+def test_sort_key_places_accented_name_with_e_names_not_after_z():
+    """Without normalization, É (code point 201) would sort after Z (90).
+    This test proves normalization fixes that."""
+    edouard = Name(("Pierre",), "Édouard")
+    fred = Name(("Pierre",), "Fred")
+    zebra = Name(("Pierre",), "Zebra")
+    assert edouard.sort_key < fred.sort_key
+    assert edouard.sort_key < zebra.sort_key
 
 def test_sort_key_puts_shorter_name_before_longer_shared_prefix():
     shorter = Name(("Beau",), "Bentley")

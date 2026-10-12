@@ -1,6 +1,12 @@
 from pathlib import Path
 
-from name_sorter.cli import EXIT_MISSING_FILE, EXIT_OK, EXIT_PARTIAL, main
+from name_sorter.cli import (
+    EXIT_IO_ERROR,
+    EXIT_MISSING_FILE,
+    EXIT_OK,
+    EXIT_PARTIAL,
+    main,
+)
 from tests.conftest import BRIEF_EXAMPLE_INPUT, BRIEF_EXAMPLE_OUTPUT
 
 OUTPUT_FILENAME = "sorted-names-list.txt"
@@ -105,5 +111,5 @@ def test_reports_non_utf8_file(working_directory, capsys):
 
     exit_code = main([str(binary_file)])
 
-    assert exit_code == EXIT_MISSING_FILE
+    assert exit_code == EXIT_IO_ERROR
     assert "UTF-8" in capsys.readouterr().err

@@ -56,7 +56,10 @@ def main(argv: Sequence[str] | None = None) -> int:
     try:
         reject_count = sort_names_from(source, valid_sink, reject_sink)
     except FileNotFoundError:
-        print(f"name-sorter: no such file: {arguments.input_file}", file=sys.stderr)
+        print(
+            f"name-sorter: no such file: {arguments.input_file}",
+            file=sys.stderr,
+        )
         return EXIT_MISSING_FILE
     except IsADirectoryError:
         print(
@@ -66,22 +69,22 @@ def main(argv: Sequence[str] | None = None) -> int:
         return EXIT_MISSING_FILE
     except PermissionError as error:
         print(
-            f"name-sorter: cannot read {error.filename}: permission denied",
+            f"name-sorter: permission denied: {error.filename}",
             file=sys.stderr,
         )
-        return EXIT_MISSING_FILE
+        return EXIT_IO_ERROR
     except UnicodeDecodeError:
         print(
-            f"name-sorter: {arguments.input_file} is not a valid UTF-8 text file",
+            f"name-sorter: {arguments.input_file} is not valid UTF-8",
             file=sys.stderr,
         )
-        return EXIT_MISSING_FILE
+        return EXIT_IO_ERROR
     except OSError as error:
         print(
-            f"name-sorter: cannot write output: {error}",
+            f"name-sorter: I/O error: {error}",
             file=sys.stderr,
         )
-        return EXIT_MISSING_FILE
+        return EXIT_IO_ERROR
 
     if reject_count:
         print(

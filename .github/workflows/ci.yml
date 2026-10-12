@@ -27,5 +27,19 @@ jobs:
 
       - name: Smoke test the command
         run: |
-          name-sorter ./unsorted-names-list.txt
-          test -s sorted-names-list.txt
+          name-sorter ./unsorted-names-list.txt > actual-output.txt
+          cat > expected-output.txt << 'EOF'
+          Marin Alvarez
+          Adonis Julius Archer
+          Beau Tristan Bentley
+          Hunter Uriah Mathew Clarke
+          Leo Gardner
+          Vaughn Lewis
+          London Lindsey
+          Mikayla Lopez
+          Janet Parsons
+          Frankie Conner Ritter
+          Shelby Nathan Yoder
+          EOF
+          diff actual-output.txt expected-output.txt
+          diff sorted-names-list.txt expected-output.txt
