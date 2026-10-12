@@ -40,6 +40,7 @@ Exit codes:
 - 0: everything parsed and sorted cleanly
 - 1: some rows were rejected, the valid ones were still sorted and written
 - 2: something broke before parsing (missing file, directory instead of file, non-UTF-8 input)
+- 3: an I/O error occurred, such as a permission error or a failure while reading or writing a file.
 
 ## How the pieces fit
 
