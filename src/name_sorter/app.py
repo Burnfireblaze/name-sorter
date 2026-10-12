@@ -21,7 +21,7 @@ def sort_names_from(
 
     valid_sink.write(sort_names(valid))
 
-    if rejects:
-        reject_sink.write(rejects)
+    
+    reject_sink.write(rejects)
 
     return len(rejects)

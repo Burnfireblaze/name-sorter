@@ -37,10 +37,10 @@ name-sorter ./unsorted-names-list.txt
 You get the sorted list on screen and in `sorted-names-list.txt`. Any rows that don't parse go to `rejected-names.txt` with the line number and reason.
 
 Exit codes:
-- 0: everything parsed and sorted cleanly
-- 1: some rows were rejected, the valid ones were still sorted and written
-- 2: something broke before parsing (missing file, directory instead of file, non-UTF-8 input)
-- 3: an I/O error occurred, such as a permission error or a failure while reading or writing a file.
+- `0`: all non-blank rows parsed and sorted successfully
+- `1`: one or more rows were rejected; valid rows were still sorted and written
+- `2`: the input file is missing or a directory was supplied instead of a file
+- `3`: an I/O error occurred, such as a permission error, invalid UTF-8 input, or a file read/write failure
 
 ## How the pieces fit
 

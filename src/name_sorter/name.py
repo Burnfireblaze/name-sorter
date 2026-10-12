@@ -35,9 +35,10 @@ class Name:
             )
 
     @property
-    def sort_key(self) -> tuple[tuple[str, str], ...]:
+    def sort_key(self) -> tuple:
         parts = (self.last_name, *self.given_names)
-        return tuple((_normalize(part), part) for part in parts)
+        normalized_parts = tuple(_normalize(part) for part in parts)
+        return normalized_parts, parts
 
     def __str__(self) -> str:
         return " ".join((*self.given_names, self.last_name))

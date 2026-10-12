@@ -85,7 +85,7 @@ Alternative: abort on first error. Simpler but less friendly for larger inputs. 
 
 ### Error handling in the CLI, not in lower layers
 
-The CLI catches `FileNotFoundError`, `IsADirectoryError`, `UnicodeDecodeError`, and `OSError`. Each gets a user-friendly message prefixed with `name-sorter:`. Lower layers raise and let them bubble up.
+The CLI catches `FileNotFoundError`, `IsADirectoryError`, `PermissionError`, `UnicodeDecodeError`, and other `OSError` exceptions. Each gets a user-friendly message prefixed with `name-sorter:`. Lower layers raise and let them bubble up.
 
 Reasons:
 - The CLI has context (program name, stderr, exit codes) that lower layers don't.
