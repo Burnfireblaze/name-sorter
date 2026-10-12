@@ -59,6 +59,7 @@ def test_sort_key_places_accented_name_with_e_names_not_after_z():
     assert edouard.sort_key < fred.sort_key
     assert edouard.sort_key < zebra.sort_key
 
+
 def test_sort_key_puts_shorter_name_before_longer_shared_prefix():
     shorter = Name(("Beau",), "Bentley")
     longer = Name(("Beau", "Tristan"), "Bentley")

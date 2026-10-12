@@ -113,3 +113,17 @@ def test_reports_non_utf8_file(working_directory, capsys):
 
     assert exit_code == EXIT_IO_ERROR
     assert "UTF-8" in capsys.readouterr().err
+
+
+def test_clears_stale_rejects_report_after_clean_run(working_directory, capsys):
+    rejects_file = working_directory / REJECTS_FILENAME
+    rejects_file.write_text("Old rejection report\n", encoding="utf-8")
+
+    path = _write_input(working_directory, ["Janet Parsons", "Leo Gardner"])
+
+    exit_code = main([str(path)])
+
+    assert exit_code == EXIT_OK
+    report = rejects_file.read_text(encoding="utf-8")
+    assert "Old rejection report" not in report
+    assert "0 line(s) rejected" in report

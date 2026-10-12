@@ -36,11 +36,13 @@ def test_duplicates_are_preserved():
         "Leo Gardner",
     ]
 
+
 def test_given_names_break_ties_when_surnames_differ_only_by_case():
     assert _sorted_text(["Zoe smith", "Adam Smith"]) == [
         "Adam Smith",
         "Zoe smith",
     ]
+
 
 def test_sorts_an_empty_list():
     assert sort_names([]) == []
