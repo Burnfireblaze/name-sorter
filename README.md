@@ -95,7 +95,7 @@ Tests cover each module in isolation, the full CLI end to end, the exact example
 
 ## CI
 
-GitHub Actions runs the test suite and a smoke test on every push and pull request. See `.github/workflows/ci.yml`. The smoke test runs `name-sorter ./unsorted-names-list.txt` against the exact example from the brief and verifies output.
+GitHub Actions runs the test suite and a smoke test on every push and pull request. See `.github/workflows/ci.yml`. The smoke test runs `name-sorter ./unsorted-names-list.txt` and verifies that terminal output matches `sorted-names-list.txt`.
 
 ## If I were taking this further
 
